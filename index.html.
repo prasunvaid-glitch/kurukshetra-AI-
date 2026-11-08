@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Kurukshetra AI — a student-friendly AI workspace demo.">
+  <title>Kurukshetra AI</title>
+  <style>
+    :root{--bg:#0b1020;--panel:#121a2d;--panel2:#18233b;--text:#eef3ff;--muted:#9eacc8;--accent:#8b7cff;--accent2:#38c9b2;--line:#26334e}
+    *{box-sizing:border-box} body{margin:0;font-family:Inter,system-ui,Arial,sans-serif;background:radial-gradient(circle at 15% 0%,#20234b 0,transparent 35%),var(--bg);color:var(--text);min-height:100vh}
+    header{display:flex;justify-content:space-between;align-items:center;padding:18px clamp(16px,5vw,64px);border-bottom:1px solid var(--line);background:#0b1020cc;position:sticky;top:0;backdrop-filter:blur(12px);z-index:2}
+    .brand{display:flex;align-items:center;gap:11px;font-weight:800;letter-spacing:.2px}.logo{width:38px;height:38px;border-radius:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));display:grid;place-items:center;color:#08101d;font-weight:900}
+    .tag{font-size:12px;color:#bfc9e2;border:1px solid var(--line);padding:7px 10px;border-radius:99px}
+    main{max-width:1050px;margin:auto;padding:58px 20px 40px}.hero{text-align:center;margin-bottom:34px}.eyebrow{color:var(--accent2);font-size:12px;font-weight:800;letter-spacing:2px;text-transform:uppercase}
+    h1{font-size:clamp(38px,7vw,68px);line-height:1.04;margin:14px 0;background:linear-gradient(90deg,#fff,#b8b0ff 55%,#70ead6);color:transparent;background-clip:text}
+    .sub{max-width:680px;margin:0 auto;color:var(--muted);font-size:16px;line-height:1.7}
+    .layout{display:grid;grid-template-columns:250px 1fr;gap:18px;align-items:start}.sidebar,.chat{background:#121a2ddd;border:1px solid var(--line);border-radius:20px}
+    .sidebar{padding:18px}.side-title{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:1.4px;margin:3px 0 14px}
+    .tool{padding:12px;border-radius:12px;background:var(--panel2);margin:9px 0;color:#dce5fb;font-size:14px}.tool span{margin-right:8px}
+    .note{font-size:12px;line-height:1.6;color:var(--muted);margin-top:18px}
+    .chat{min-height:470px;display:flex;flex-direction:column;overflow:hidden}.chat-head{padding:17px 20px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}.chat-head strong{font-size:15px}.online{font-size:12px;color:var(--accent2)}
+    #messages{padding:22px;display:flex;flex-direction:column;gap:14px;flex:1;min-height:300px}.msg{max-width:85%;padding:13px 15px;border-radius:15px;line-height:1.55;font-size:14px;white-space:pre-wrap}.bot{background:var(--panel2);border:1px solid var(--line);align-self:flex-start}.user{background:#554bc0;align-self:flex-end}
+    .composer{padding:15px;border-top:1px solid var(--line);display:flex;gap:10px}.composer input{flex:1;min-width:0;background:#0b1223;border:1px solid var(--line);border-radius:12px;padding:14px;color:var(--text);font-size:14px;outline:none}.composer input:focus{border-color:var(--accent)}
+    button{border:0;border-radius:12px;padding:0 20px;background:linear-gradient(135deg,var(--accent),#6558d8);color:white;font-weight:700;cursor:pointer}button:hover{filter:brightness(1.12)}
+    .quick{display:flex;flex-wrap:wrap;gap:8px;padding:0 20px 16px}.quick button{padding:9px 12px;background:#202c47;border:1px solid var(--line);font-size:12px}
+    footer{text-align:center;color:#7f8ba6;font-size:12px;padding:25px 15px}
+    @media(max-width:760px){main{padding-top:38px}.layout{grid-template-columns:1fr}.sidebar{order:2}.chat{order:1}.chat{min-height:430px}.msg{max-width:95%}}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand"><div class="logo">K</div><span>KURUKSHETRA AI</span></div>
+    <div class="tag">Student project · Demo</div>
+  </header>
+  <main>
+    <section class="hero">
+      <div class="eyebrow">One workspace. Many possibilities.</div>
+      <h1>Think beyond limits.</h1>
+      <p class="sub">Kurukshetra AI is a concept for a unified AI workspace designed to help students learn, create, research and solve problems from one simple interface.</p>
+    </section>
+    <section class="layout">
+      <aside class="sidebar">
+        <div class="side-title">Explore tools</div>
+        <div class="tool"><span>💬</span> AI Chat Assistant</div>
+        <div class="tool"><span>📚</span> Study & Explain</div>
+        <div class="tool"><span>✍️</span> Writing Assistant</div>
+        <div class="tool"><span>💡</span> Idea Generator</div>
+        <div class="tool"><span>🧩</span> Coding Helper</div>
+        <p class="note">Demo note: these are proposed product features. External AI models and live APIs are not connected in this starter version.</p>
+      </aside>
+      <section class="chat">
+        <div class="chat-head"><strong>Kurukshetra Assistant</strong><span class="online">● Demo mode</span></div>
+        <div id="messages" aria-live="polite">
+          <div class="msg bot">Welcome to Kurukshetra AI! Ask a question or try one of the example prompts below. This demo shows the interface; connect an AI API to enable real AI answers.</div>
+        </div>
+        <div class="quick">
+          <button type="button" data-prompt="Explain artificial intelligence in simple words.">Explain AI</button>
+          <button type="button" data-prompt="Give me a creative college project idea.">Project idea</button>
+          <button type="button" data-prompt="Create a 5-point study plan for my exams.">Study plan</button>
+        </div>
+        <form class="composer" id="chatForm">
+          <input id="prompt" autocomplete="off" placeholder="Ask Kurukshetra AI..." aria-label="Your message">
+          <button type="submit">Send</button>
+        </form>
+      </section>
+    </section>
+  </main>
+  <footer>Kurukshetra AI · Concept website prototype · Built for demonstration</footer>
+  <script>
+    const form = document.getElementById('chatForm');
+    const input = document.getElementById('prompt');
+    const messages = document.getElementById('messages');
+    function addMessage(text, who){
+      const el = document.createElement('div');
+      el.className = 'msg ' + who;
+      el.textContent = text;
+      messages.appendChild(el);
+      messages.scrollTop = messages.scrollHeight;
+    }
+    function replyTo(text){
+      const t = text.toLowerCase();
+      if(t.includes('project')) return 'Project idea: Build a campus productivity hub with notes, event updates, study resources and an AI help desk. Start with one useful feature, test it with students, and improve from their feedback.';
+      if(t.includes('study') || t.includes('exam')) return 'A simple study plan: 1) List your topics. 2) Prioritise difficult chapters. 3) Study in focused 25-minute sessions. 4) Practise questions. 5) Review mistakes and revise key points.';
+      if(t.includes('artificial intelligence') || t.includes(' ai')) return 'Artificial intelligence (AI) is technology that helps computers perform tasks that usually need human-like abilities, such as understanding language, recognising patterns and generating ideas.';
+      if(t.includes('hello') || t.includes('hi')) return 'Hello! Welcome to Kurukshetra AI. What would you like to learn or create today?';
+      return 'Thanks for trying Kurukshetra AI! This is a front-end prototype, so it cannot generate live AI responses yet. To make it a real AI assistant, connect a trusted AI provider through a secure backend—never place a private API key directly in this HTML file.';
+    }
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      const text = input.value.trim();
+      if(!text) return;
+      addMessage(text, 'user');
+      input.value = '';
+      window.setTimeout(() => addMessage(replyTo(text), 'bot'), 350);
+    });
+    document.querySelectorAll('[data-prompt]').forEach(btn => {
+      btn.addEventListener('click', () => { input.value = btn.dataset.prompt; form.requestSubmit(); });
+    });
+  </script>
+</body>
+</html>
